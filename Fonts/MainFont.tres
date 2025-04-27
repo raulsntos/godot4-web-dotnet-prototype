@@ -1,0 +1,9 @@
+[gd_resource type="FontVariation" load_steps=3 format=3 uid="uid://btvflhvb6swcg"]
+
+[ext_resource type="FontFile" uid="uid://b0e53d57s1mpl" path="res://Fonts/FiraCode-VariableFont_wght.ttf" id="1_wlkqc"]
+[ext_resource type="FontFile" uid="uid://ddoyfaa56xrio" path="res://Fonts/NotoColorEmoji-Regular.ttf" id="2_e57fi"]
+
+[resource]
+fallbacks = Array[Font]([ExtResource("2_e57fi")])
+base_font = ExtResource("1_wlkqc")
+variation_embolden = 0.5

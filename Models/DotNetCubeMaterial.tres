@@ -1,0 +1,11 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://cilh85gx82jck"]
+
+[ext_resource type="Shader" uid="uid://il0loc478sd4" path="res://Models/CubeShader.gdshader" id="1_p7brx"]
+[ext_resource type="Texture2D" uid="uid://cmbdlnxdps65w" path="res://dotnet-logo.svg" id="2_wujf5"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_p7brx")
+shader_parameter/albedo_texture = ExtResource("2_wujf5")
+shader_parameter/uv_scale = Vector3(1, 1, 1)
+shader_parameter/uv_offset = null

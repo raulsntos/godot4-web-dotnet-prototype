@@ -1,0 +1,163 @@
+[gd_scene load_steps=14 format=3 uid="uid://b4e5y5y8e3b15"]
+
+[ext_resource type="Script" uid="uid://bad4eeiw8wq3s" path="res://Main.cs" id="1_ajiki"]
+[ext_resource type="Texture2D" uid="uid://ct7nc6236v6rn" path="res://Icons/VSplitContainer.svg" id="2_fos0i"]
+[ext_resource type="Texture2D" uid="uid://82xxp5cscv4h" path="res://Icons/Reload.svg" id="2_r0du0"]
+[ext_resource type="Texture2D" uid="uid://cew34twiwcbid" path="res://Icons/Play.svg" id="3_cm0pq"]
+[ext_resource type="StyleBox" uid="uid://cp5lw87qf73oo" path="res://Styles/ContentPanelStyle.tres" id="4_cm0pq"]
+[ext_resource type="Script" uid="uid://oaeq3voiil3p" path="res://OutputLabel.cs" id="6_3dxm6"]
+[ext_resource type="StyleBox" uid="uid://3ta76ys4yy3b" path="res://Styles/ShellPanelStyle.tres" id="7_lgr22"]
+[ext_resource type="PackedScene" uid="uid://eifoogtbgqvn" path="res://Models/Cube.tscn" id="8_trn2v"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lgr22"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_trn2v"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_trn2v"]
+device = -1
+alt_pressed = true
+keycode = 66
+unicode = 98
+
+[sub_resource type="InputEventKey" id="InputEventKey_03owx"]
+device = -1
+keycode = 4194336
+
+[sub_resource type="Shortcut" id="Shortcut_wkp8b"]
+events = [SubResource("InputEventKey_trn2v"), SubResource("InputEventKey_03owx")]
+
+[node name="Main" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ajiki")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+
+[node name="SplitContainer" type="SplitContainer" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+split_offset = 600
+dragger_visibility = 2
+
+[node name="CodeEdit" type="CodeEdit" parent="VBoxContainer/SplitContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/selection_color = Color(0.678431, 0.839216, 1, 0.14902)
+theme_override_styles/normal = ExtResource("4_cm0pq")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_lgr22")
+text = "using System;
+
+Console.WriteLine(\"🌄\");"
+gutters_draw_line_numbers = true
+
+[node name="OutputLabel" type="RichTextLabel" parent="VBoxContainer/SplitContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+focus_mode = 2
+theme_override_colors/selection_color = Color(0.678431, 0.839216, 1, 0.14902)
+theme_override_styles/focus = SubResource("StyleBoxEmpty_trn2v")
+theme_override_styles/normal = ExtResource("4_cm0pq")
+text = "🌄"
+scroll_following = true
+selection_enabled = true
+script = ExtResource("6_3dxm6")
+
+[node name="FooterContainer" type="PanelContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("7_lgr22")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/FooterContainer"]
+layout_mode = 2
+
+[node name="SourceCodeLabel" type="RichTextLabel" parent="VBoxContainer/FooterContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+bbcode_enabled = true
+text = "Blog Announcement • Source Code"
+fit_content = true
+
+[node name="PoweredByLabel" type="RichTextLabel" parent="VBoxContainer/FooterContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+bbcode_enabled = true
+text = "Powered by Godot and .NET"
+fit_content = true
+horizontal_alignment = 2
+
+[node name="HeaderContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -80.0
+offset_bottom = 24.0
+grow_horizontal = 0
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HeaderContainer"]
+layout_mode = 2
+
+[node name="ToggleLayoutButton" type="Button" parent="HeaderContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "Switch to vertical layout"
+icon = ExtResource("2_fos0i")
+
+[node name="ResetButton" type="Button" parent="HeaderContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "Reset C# code"
+icon = ExtResource("2_r0du0")
+
+[node name="RunButton" type="Button" parent="HeaderContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "Run C# code"
+shortcut = SubResource("Shortcut_wkp8b")
+icon = ExtResource("3_cm0pq")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -112.0
+offset_top = -148.0
+offset_right = -12.0
+offset_bottom = -48.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(100, 100)
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.50571)
+
+[node name="Cube" parent="SubViewportContainer/SubViewport" instance=ExtResource("8_trn2v")]
+unique_name_in_owner = true
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
